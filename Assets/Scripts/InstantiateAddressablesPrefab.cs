@@ -5,6 +5,9 @@ using System;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
+// ‚©‚ß‚­‚ß‚³‚ñ
+// https://gametukurikata.com/basic/addressables
+
 public class InstantiateAddressablesPrefab : MonoBehaviour
 {
     [SerializeField]
