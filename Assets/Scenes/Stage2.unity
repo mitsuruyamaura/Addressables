@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35f389eaddd2664cbe74ad2f0ec074c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 0
+  sceneName: 2
 --- !u!114 &1260833387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,7 +732,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage1
+  m_Text: Title
 --- !u!222 &1504045637
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -812,7 +812,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage2
+  m_Text: Stage1
 --- !u!222 &1934317134
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -29,6 +29,18 @@ MonoBehaviour:
     m_Address: Assets/Scripts/SoundDataSO.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 0553b7a0dcad2b14f8de98433f612ff9
+    m_Address: Assets/Scenes/Title.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5e39441c2de8b624d9d507825abc3f19
+    m_Address: Assets/Scenes/Stage1.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4a7bb53136b24ea4198c28627b0ab113
+    m_Address: Assets/Scenes/Stage2.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 552149853094ee64ead752255d2bfdf4, type: 2}
   m_SchemaSet:

@@ -4,24 +4,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public enum SceneName {
+	Title,
+	Stage1,
+	Stage2,
+}
+
 public class ButtonScript : MonoBehaviour
 {
-	public enum SceneName {
-		Title,
-		Stage1,
-		Stage2,
-	}
-
-	//　LoaderシーンのLoaderスクリプト
+	// Loader シーンの SceneLoader スクリプト
 	private SceneLoader loader;
-	//　ボタン１
+	// ボタン１
+
 	private Button button1;
-	//　ボタン２
+	// ボタン２
+
 	private Button button2;
 	[SerializeField]
+
 	private SceneName sceneName;
 
-	// Start is called before the first frame update
 	void Start() {
 		loader = FindObjectOfType<SceneLoader>();
 		button1 = transform.Find("Button1").GetComponent<Button>();
@@ -29,14 +31,14 @@ public class ButtonScript : MonoBehaviour
 
 		//　設定したsceneNameに応じてボタンが押されたら読み込むシーンを変更する
 		if (sceneName == SceneName.Title) {
-			button1.onClick.AddListener(() => loader.LoadScene("Stage1"));
-			button2.onClick.AddListener(() => loader.LoadScene("Stage2"));
+			button1.onClick.AddListener(() => loader.LoadScene(SceneName.Stage1.ToString()));
+			button2.onClick.AddListener(() => loader.LoadScene(SceneName.Stage2.ToString()));
 		} else if (sceneName == SceneName.Stage1) {
-			button1.onClick.AddListener(() => loader.LoadScene("Title"));
-			button2.onClick.AddListener(() => loader.LoadScene("Stage2"));
+			button1.onClick.AddListener(() => loader.LoadScene(SceneName.Title.ToString()));
+			button2.onClick.AddListener(() => loader.LoadScene(SceneName.Stage2.ToString()));
 		} else if (sceneName == SceneName.Stage2) {
-			button1.onClick.AddListener(() => loader.LoadScene("Title"));
-			button2.onClick.AddListener(() => loader.LoadScene("Stage1"));
+			button1.onClick.AddListener(() => loader.LoadScene(SceneName.Title.ToString()));
+			button2.onClick.AddListener(() => loader.LoadScene(SceneName.Stage1.ToString()));
 		}
 	}
 }
