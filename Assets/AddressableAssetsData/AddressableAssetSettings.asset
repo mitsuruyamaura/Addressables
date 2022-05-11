@@ -78,7 +78,7 @@ MonoBehaviour:
       - m_Id: 30c30099d1b337c48b8cd5b09314ce31
         m_Value: ServerData/[BuildTarget]
       - m_Id: ead56be7dcd379044bca41a6fc00c38d
-        m_Value: http://yama-p.nobushi.jp/AddressablesTest/[BuildTarget]
+        m_Value: http://yama-p.nobushi.jp/AddressablesTest/
     m_ProfileEntryNames:
     - m_Id: 88be00852c55fbd42acf095b79169d49
       m_Name: BuildTarget
@@ -133,7 +133,7 @@ MonoBehaviour:
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean
-          m_Data: True
+          m_Data: False
           m_Key: IsEnabled
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
