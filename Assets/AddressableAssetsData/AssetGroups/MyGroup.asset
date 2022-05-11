@@ -25,6 +25,10 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Sphere.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: b7c24698215f581459e3bb7431dfa068
+    m_Address: Assets/Scripts/SoundDataSO.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 552149853094ee64ead752255d2bfdf4, type: 2}
   m_SchemaSet:
