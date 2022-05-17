@@ -31,14 +31,14 @@ public class ButtonScript : MonoBehaviour
 
 		//　設定したsceneNameに応じてボタンが押されたら読み込むシーンを変更する
 		if (sceneName == SceneName.Title) {
-			button1.onClick.AddListener(() => loader.LoadScene(SceneName.Stage1.ToString()));
-			button2.onClick.AddListener(() => loader.LoadScene(SceneName.Stage2.ToString()));
+			button1.onClick.AddListener(() => loader.PrepareLoadSceneAsync(SceneName.Stage1.ToString()));
+			button2.onClick.AddListener(() => loader.PrepareLoadSceneAsync(SceneName.Stage2.ToString()));
 		} else if (sceneName == SceneName.Stage1) {
-			button1.onClick.AddListener(() => loader.LoadScene(SceneName.Title.ToString()));
-			button2.onClick.AddListener(() => loader.LoadScene(SceneName.Stage2.ToString()));
+			button1.onClick.AddListener(() => loader.PrepareLoadSceneAsync(SceneName.Title.ToString()));
+			button2.onClick.AddListener(() => loader.PrepareLoadSceneAsync(SceneName.Stage2.ToString()));
 		} else if (sceneName == SceneName.Stage2) {
-			button1.onClick.AddListener(() => loader.LoadScene(SceneName.Title.ToString()));
-			button2.onClick.AddListener(() => loader.LoadScene(SceneName.Stage1.ToString()));
+			button1.onClick.AddListener(() => loader.PrepareLoadSceneAsync(SceneName.Title.ToString()));
+			button2.onClick.AddListener(() => loader.PrepareLoadSceneAsync(SceneName.Stage1.ToString()));
 		}
 	}
 }

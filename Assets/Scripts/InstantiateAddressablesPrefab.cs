@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Cysharp.Threading.Tasks;
 
 // かめくめさん
 // https://gametukurikata.com/basic/addressables
@@ -29,8 +30,13 @@ public class InstantiateAddressablesPrefab : MonoBehaviour
     private List<GameObject> instancedSphereObjList = new ();
 
 
-    void Start()
+    async void Start()
     {
+        var token = this.GetCancellationTokenOnDestroy();
+
+        cubePrefabHandle = cubePrefab.InstantiateAsync(Vector3.one, Quaternion.identity);
+        await cubePrefabHandle.Task;
+
         Addressables.LoadAssetAsync<GameObject>(cubePrefab)   // cubePrefab をロードし、終了後、Completed の中を処理する
             .Completed += (obj) => {
                 cubePrefabHandle = obj;        // ロードしたハンドル obj を Handle に保持する
@@ -41,7 +47,12 @@ public class InstantiateAddressablesPrefab : MonoBehaviour
 
         spherePrefab.LoadAssetAsync<GameObject>().Completed += Loaded;　// やり方が違うだけで、こちらの方法も上と同じ(メソッド化しているか、どうか)
 
-        Invoke("Delete", 10.0f);
+        await UniTask.Delay(10, false, PlayerLoopTiming.Update, token);
+        Delete();
+
+        instancedCubeObjList.Add(Instantiate(loadCubePrefab, Vector3.zero, Quaternion.identity));
+
+        //Invoke("Delete", 10.0f);
     }
 
     /// <summary>

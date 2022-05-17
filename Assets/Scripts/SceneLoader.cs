@@ -6,6 +6,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -49,12 +51,12 @@ public class SceneLoader : MonoBehaviour
 	void Start() {
 		loaderSceneCamera = Camera.main;
 		if (SceneManager.GetActiveScene().name == "Loader") {
-			LoadScene(SceneName.Title.ToString());
+			PrepareLoadSceneAsync(SceneName.Title.ToString()).Forget();
 		}
 	}
 
 	//　シーン読み込み処理
-	public void LoadScene(string sceneName) {
+	public async UniTask PrepareLoadSceneAsync(string sceneName) {
 		loadSceneName = sceneName;
 
 		// 前のシーンがある場合はアンロード処理
@@ -62,11 +64,12 @@ public class SceneLoader : MonoBehaviour
 			// previousScene をアンロード。アンロードが終了してから、OnSceneUnloaded を実行
 			Addressables.UnloadSceneAsync(previousScene).Completed += OnSceneUnloaded;
 		}
-		StartCoroutine(Loading(sceneName));
+		var token = this.GetCancellationTokenOnDestroy();
+		await LoadSceneAsync(sceneName, token);
 	}
 
 	//　実際の読み込み処理
-	private IEnumerator Loading(string sceneName) {
+	private async UniTask LoadSceneAsync(string sceneName, CancellationToken token) {
 
 		// sceneAssetReference のセット
 		if (sceneName == SceneName.Title.ToString()) {
@@ -80,13 +83,15 @@ public class SceneLoader : MonoBehaviour
 		// 読み込むシーンのダウンロードサイズを計算
 		downloadSizeHandle = Addressables.GetDownloadSizeAsync(sceneAssetReference);
 
-		// ハンドルのロードが完了していない場合
-		if (!downloadSizeHandle.IsDone) {
-			yield return downloadSizeHandle;
-		}
+		var totalSize = await Addressables.GetDownloadSizeAsync(sceneAssetReference).WithCancellation(token);
 
-		// ダウンロードするアセットに依存関係のあるアセットをダウンロードするためのハンドルを作成
-		downloadDependenciesHandle = Addressables.DownloadDependenciesAsync(sceneAssetReference);
+        // ハンドルのロードが完了していない場合
+        if (!downloadSizeHandle.IsDone) {
+            await downloadSizeHandle;
+        }
+
+        // ダウンロードするアセットに依存関係のあるアセットをダウンロードするためのハンドルを作成
+        downloadDependenciesHandle = Addressables.DownloadDependenciesAsync(sceneAssetReference);
 
 		// ダウンロードの状況が 95％ より小さい時のみキャンバス表示。キャッシュされている時等はローディングキャンバスを表示しない
 		if (downloadDependenciesHandle.GetDownloadStatus().Percent < 0.95f) {
@@ -97,16 +102,19 @@ public class SceneLoader : MonoBehaviour
 		while (downloadDependenciesHandle.Status == AsyncOperationStatus.None) {
 			downloadSlider.value = downloadDependenciesHandle.GetDownloadStatus().Percent;
 			downloadPercentText.text = (downloadDependenciesHandle.GetDownloadStatus().Percent * 100).ToString("00.0") + "%";
-			yield return null;
+			//yield return null;
+
+			await UniTask.WaitForFixedUpdate(token);  // UniTast.Yirld の PlayerLooping のタイミングを FixedUpdate で指定したもの
+			//await UniTask.Yield(PlayerLoopTiming.FixedUpdate, token);  // これとおなじ
 		}
 
-		// ハンドルのロードが完了していない場合
-		if (!downloadDependenciesHandle.IsDone) {
-			yield return downloadDependenciesHandle;
-		}
+        // ハンドルのロードが完了していない場合
+        if (!downloadDependenciesHandle.IsDone) {
+            await downloadDependenciesHandle;
+        }
 
-		// 現在のシーンに追加する形で次のシーンを非同期でロード。ロードが終了したら、OnSceneLoaded メソッドを実行
-		sceneAssetReference.LoadSceneAsync(LoadSceneMode.Additive).Completed += OnSceneLoaded;
+        // 現在のシーンに追加する形で次のシーンを非同期でロード。ロードが終了したら、OnSceneLoaded メソッドを実行
+        sceneAssetReference.LoadSceneAsync(LoadSceneMode.Additive).Completed += OnSceneLoaded;
 	}
 
 	/// <summary>
