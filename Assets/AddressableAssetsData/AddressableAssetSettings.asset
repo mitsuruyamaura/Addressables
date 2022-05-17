@@ -78,7 +78,7 @@ MonoBehaviour:
       - m_Id: 30c30099d1b337c48b8cd5b09314ce31
         m_Value: ServerData/[BuildTarget]
       - m_Id: ead56be7dcd379044bca41a6fc00c38d
-        m_Value: http://yama-p.nobushi.jp/AddressablesTest/
+        m_Value: https://bf88704b-d9d4-4afa-834b-a403d5812c36.client-api.unity3dusercontent.com/client_api/v1/buckets/3a080fad-b196-404d-99e4-782e3d5627f3/release_by_badge/latest/entry_by_path/content/?path=
     m_ProfileEntryNames:
     - m_Id: 88be00852c55fbd42acf095b79169d49
       m_Name: BuildTarget
