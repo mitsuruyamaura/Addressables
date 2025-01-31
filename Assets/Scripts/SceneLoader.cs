@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -11,38 +11,38 @@ using System.Threading;
 
 public class SceneLoader : MonoBehaviour
 {
-	//// ©g‚ğ“ü‚ê‚éÃ“IƒtƒB[ƒ‹ƒh
+	//// è‡ªèº«ã‚’å…¥ã‚Œã‚‹é™çš„ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 	//private static Loader loader;
 
-	// “Ç‚İ‚ŞƒV[ƒ“ƒŠƒXƒg
+	// èª­ã¿è¾¼ã‚€ã‚·ãƒ¼ãƒ³ãƒªã‚¹ãƒˆ
 	[SerializeField]
 	private List<AssetReference> scene;
 
-	// ‘O‚ÌƒV[ƒ“‚ÌƒCƒ“ƒXƒ^ƒ“ƒXBƒV[ƒ“‚ğƒAƒ“ƒ[ƒh‚·‚é‚½‚ß‚É•Û‚·‚é
+	// å‰ã®ã‚·ãƒ¼ãƒ³ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚ã‚·ãƒ¼ãƒ³ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãŸã‚ã«ä¿æŒã™ã‚‹
 	private SceneInstance previousScene;
 
-	// ƒnƒ“ƒhƒ‹
-	private AsyncOperationHandle<long> downloadSizeHandle;     // ƒ_ƒEƒ“ƒ[ƒh‚·‚éƒAƒZƒbƒgƒoƒ“ƒhƒ‹‚Ì§Œä‚É—˜—p‚·‚éƒnƒ“ƒhƒ‹
-	private AsyncOperationHandle downloadDependenciesHandle;   // ƒ_ƒEƒ“ƒ[ƒh‚·‚éƒAƒZƒbƒg‚ÉˆË‘¶‚·‚éƒAƒZƒbƒg‚Ìƒ_ƒEƒ“ƒ[ƒh‚Ég—p‚·‚éƒnƒ“ƒhƒ‹
+	// ãƒãƒ³ãƒ‰ãƒ«
+	private AsyncOperationHandle<long> downloadSizeHandle;     // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚¢ã‚»ãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã®åˆ¶å¾¡ã«åˆ©ç”¨ã™ã‚‹ãƒãƒ³ãƒ‰ãƒ«
+	private AsyncOperationHandle downloadDependenciesHandle;   // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚¢ã‚»ãƒƒãƒˆã«ä¾å­˜ã™ã‚‹ã‚¢ã‚»ãƒƒãƒˆã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã«ä½¿ç”¨ã™ã‚‹ãƒãƒ³ãƒ‰ãƒ«
 
-	private AssetReference sceneAssetReference;    // ƒV[ƒ““Ç‚İ‚İ‚É—˜—p
+	private AssetReference sceneAssetReference;    // ã‚·ãƒ¼ãƒ³èª­ã¿è¾¼ã¿ã«åˆ©ç”¨
 
-	// ƒAƒ“ƒ[ƒh‚·‚é‚©‚Ç‚¤‚©
+	// ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‹ã©ã†ã‹
 	private bool unload;
 
-	// ƒ[ƒhó‹µ‚ğ“`‚¦‚éUI‚ÌƒLƒƒƒ“ƒoƒX
+	// ãƒ­ãƒ¼ãƒ‰çŠ¶æ³ã‚’ä¼ãˆã‚‹UIã®ã‚­ãƒ£ãƒ³ãƒã‚¹
 	[SerializeField]
 	private Canvas loaderCanvas;
 
-	// ƒ_ƒEƒ“ƒ[ƒhó‹µ‚Ég—p‚·‚éƒXƒ‰ƒCƒ_[
+	// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰çŠ¶æ³ã«ä½¿ç”¨ã™ã‚‹ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
 	[SerializeField]
 	private Slider downloadSlider;
 
-	// “Ç‚İ‚İ—¦
+	// èª­ã¿è¾¼ã¿ç‡
 	[SerializeField]
 	private Text downloadPercentText;
 
-	// Loader ƒV[ƒ“‚ÌƒJƒƒ‰
+	// Loader ã‚·ãƒ¼ãƒ³ã®ã‚«ãƒ¡ãƒ©
 	private Camera loaderSceneCamera;
 
 	private string loadSceneName;
@@ -55,23 +55,23 @@ public class SceneLoader : MonoBehaviour
 		}
 	}
 
-	//@ƒV[ƒ““Ç‚İ‚İˆ—
+	//ã€€ã‚·ãƒ¼ãƒ³èª­ã¿è¾¼ã¿å‡¦ç†
 	public async UniTask PrepareLoadSceneAsync(string sceneName) {
 		loadSceneName = sceneName;
 
-		// ‘O‚ÌƒV[ƒ“‚ª‚ ‚éê‡‚ÍƒAƒ“ƒ[ƒhˆ—
+		// å‰ã®ã‚·ãƒ¼ãƒ³ãŒã‚ã‚‹å ´åˆã¯ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰å‡¦ç†
 		if (unload) {
-			// previousScene ‚ğƒAƒ“ƒ[ƒhBƒAƒ“ƒ[ƒh‚ªI—¹‚µ‚Ä‚©‚çAOnSceneUnloaded ‚ğÀs
+			// previousScene ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã€‚ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ãŒçµ‚äº†ã—ã¦ã‹ã‚‰ã€OnSceneUnloaded ã‚’å®Ÿè¡Œ
 			Addressables.UnloadSceneAsync(previousScene).Completed += OnSceneUnloaded;
 		}
 		var token = this.GetCancellationTokenOnDestroy();
 		await LoadSceneAsync(sceneName, token);
 	}
 
-	//@ÀÛ‚Ì“Ç‚İ‚İˆ—
+	//ã€€å®Ÿéš›ã®èª­ã¿è¾¼ã¿å‡¦ç†
 	private async UniTask LoadSceneAsync(string sceneName, CancellationToken token) {
 
-		// sceneAssetReference ‚ÌƒZƒbƒg
+		// sceneAssetReference ã®ã‚»ãƒƒãƒˆ
 		if (sceneName == SceneName.Title.ToString()) {
 			sceneAssetReference = scene[0];
 		} else if (sceneName == SceneName.Stage1.ToString()) {
@@ -80,85 +80,85 @@ public class SceneLoader : MonoBehaviour
 			sceneAssetReference = scene[2];
 		}
 
-		// “Ç‚İ‚ŞƒV[ƒ“‚Ìƒ_ƒEƒ“ƒ[ƒhƒTƒCƒY‚ğŒvZ
+		// èª­ã¿è¾¼ã‚€ã‚·ãƒ¼ãƒ³ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚µã‚¤ã‚ºã‚’è¨ˆç®—
 		downloadSizeHandle = Addressables.GetDownloadSizeAsync(sceneAssetReference);
 
 		var totalSize = await Addressables.GetDownloadSizeAsync(sceneAssetReference).WithCancellation(token);
 
-        // ƒnƒ“ƒhƒ‹‚Ìƒ[ƒh‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢ê‡
+        // ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ­ãƒ¼ãƒ‰ãŒå®Œäº†ã—ã¦ã„ãªã„å ´åˆ
         if (!downloadSizeHandle.IsDone) {
             await downloadSizeHandle;
         }
 
-        // ƒ_ƒEƒ“ƒ[ƒh‚·‚éƒAƒZƒbƒg‚ÉˆË‘¶ŠÖŒW‚Ì‚ ‚éƒAƒZƒbƒg‚ğƒ_ƒEƒ“ƒ[ƒh‚·‚é‚½‚ß‚Ìƒnƒ“ƒhƒ‹‚ğì¬
+        // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚¢ã‚»ãƒƒãƒˆã«ä¾å­˜é–¢ä¿‚ã®ã‚ã‚‹ã‚¢ã‚»ãƒƒãƒˆã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãŸã‚ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆ
         downloadDependenciesHandle = Addressables.DownloadDependenciesAsync(sceneAssetReference);
 
-		// ƒ_ƒEƒ“ƒ[ƒh‚Ìó‹µ‚ª 95“ ‚æ‚è¬‚³‚¢‚Ì‚İƒLƒƒƒ“ƒoƒX•\¦BƒLƒƒƒbƒVƒ…‚³‚ê‚Ä‚¢‚é“™‚Íƒ[ƒfƒBƒ“ƒOƒLƒƒƒ“ƒoƒX‚ğ•\¦‚µ‚È‚¢
+		// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã®çŠ¶æ³ãŒ 95ï¼… ã‚ˆã‚Šå°ã•ã„æ™‚ã®ã¿ã‚­ãƒ£ãƒ³ãƒã‚¹è¡¨ç¤ºã€‚ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã•ã‚Œã¦ã„ã‚‹æ™‚ç­‰ã¯ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚­ãƒ£ãƒ³ãƒã‚¹ã‚’è¡¨ç¤ºã—ãªã„
 		if (downloadDependenciesHandle.GetDownloadStatus().Percent < 0.95f) {
 			loaderCanvas.enabled = true;
 		}
 
-		// ˆË‘¶ŠÖŒW‚Ì‚ ‚éƒAƒZƒbƒg‚ğƒ_ƒEƒ“ƒ[ƒh‚µ‚Ä‚¢‚éi’»ó‹µ‚ğ•\¦(None ‚Ìê‡A¬Œ÷‚Å‚à¸”s‚Å‚à‚È‚­Ais‚µ‚Ä‚¢‚éó‘Ô‚ğ•\‚·)
+		// ä¾å­˜é–¢ä¿‚ã®ã‚ã‚‹ã‚¢ã‚»ãƒƒãƒˆã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ã‚‹é€²æ—çŠ¶æ³ã‚’è¡¨ç¤º(None ã®å ´åˆã€æˆåŠŸã§ã‚‚å¤±æ•—ã§ã‚‚ãªãã€é€²è¡Œã—ã¦ã„ã‚‹çŠ¶æ…‹ã‚’è¡¨ã™)
 		while (downloadDependenciesHandle.Status == AsyncOperationStatus.None) {
 			downloadSlider.value = downloadDependenciesHandle.GetDownloadStatus().Percent;
 			downloadPercentText.text = (downloadDependenciesHandle.GetDownloadStatus().Percent * 100).ToString("00.0") + "%";
 			//yield return null;
 
-			await UniTask.WaitForFixedUpdate(token);  // UniTast.Yirld ‚Ì PlayerLooping ‚Ìƒ^ƒCƒ~ƒ“ƒO‚ğ FixedUpdate ‚Åw’è‚µ‚½‚à‚Ì
-			//await UniTask.Yield(PlayerLoopTiming.FixedUpdate, token);  // ‚±‚ê‚Æ‚¨‚È‚¶
+			await UniTask.WaitForFixedUpdate(token);  // UniTast.Yirld ã® PlayerLooping ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ FixedUpdate ã§æŒ‡å®šã—ãŸã‚‚ã®
+			//await UniTask.Yield(PlayerLoopTiming.FixedUpdate, token);  // ã“ã‚Œã¨ãŠãªã˜
 		}
 
-        // ƒnƒ“ƒhƒ‹‚Ìƒ[ƒh‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢ê‡
+        // ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ­ãƒ¼ãƒ‰ãŒå®Œäº†ã—ã¦ã„ãªã„å ´åˆ
         if (!downloadDependenciesHandle.IsDone) {
             await downloadDependenciesHandle;
         }
 
-        // Œ»İ‚ÌƒV[ƒ“‚É’Ç‰Á‚·‚éŒ`‚ÅŸ‚ÌƒV[ƒ“‚ğ”ñ“¯Šú‚Åƒ[ƒhBƒ[ƒh‚ªI—¹‚µ‚½‚çAOnSceneLoaded ƒƒ\ƒbƒh‚ğÀs
+        // ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³ã«è¿½åŠ ã™ã‚‹å½¢ã§æ¬¡ã®ã‚·ãƒ¼ãƒ³ã‚’éåŒæœŸã§ãƒ­ãƒ¼ãƒ‰ã€‚ãƒ­ãƒ¼ãƒ‰ãŒçµ‚äº†ã—ãŸã‚‰ã€OnSceneLoaded ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè¡Œ
         sceneAssetReference.LoadSceneAsync(LoadSceneMode.Additive).Completed += OnSceneLoaded;
 	}
 
 	/// <summary>
-	/// ƒV[ƒ“‚Ìƒ[ƒh
+	/// ã‚·ãƒ¼ãƒ³ã®ãƒ­ãƒ¼ãƒ‰
 	/// </summary>
 	/// <param name="obj"></param>
 	private void OnSceneLoaded(AsyncOperationHandle<SceneInstance> obj) {
 
-		// ƒV[ƒ“‚Ìƒ[ƒh‚É¬Œ÷‚µ‚Ä‚¢‚½‚ç(ƒnƒ“ƒhƒ‹‚ÌƒXƒe[ƒ^ƒX‚ª¬Œ÷‚Å‚ ‚éê‡)
+		// ã‚·ãƒ¼ãƒ³ã®ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ã¦ã„ãŸã‚‰(ãƒãƒ³ãƒ‰ãƒ«ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒæˆåŠŸã§ã‚ã‚‹å ´åˆ)
 		if (obj.Status == AsyncOperationStatus.Succeeded) {
 			previousScene = obj.Result;
 
-			// Ÿ‚ÌƒV[ƒ“‚ğ“Ç‚İ‚ŞÛ‚ÉAŒ»İ‚ÌƒV[ƒ“‚ğƒAƒ“ƒ[ƒh‚·‚é‚æ‚¤‚ÉƒZƒbƒg‚·‚é
+			// æ¬¡ã®ã‚·ãƒ¼ãƒ³ã‚’èª­ã¿è¾¼ã‚€éš›ã«ã€ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚ˆã†ã«ã‚»ãƒƒãƒˆã™ã‚‹
 			unload = true;
 
-			// ƒLƒƒƒ“ƒoƒX–³Œø
+			// ã‚­ãƒ£ãƒ³ãƒã‚¹ç„¡åŠ¹
 			loaderCanvas.enabled = false;
 
-			// Loader ƒV[ƒ“‚ÌƒJƒƒ‰‚ğ–³Œø(‘¼‚ÌƒV[ƒ“‚É‰e‹¿‚ª‚ ‚é‚½‚ß)
+			// Loader ã‚·ãƒ¼ãƒ³ã®ã‚«ãƒ¡ãƒ©ã‚’ç„¡åŠ¹(ä»–ã®ã‚·ãƒ¼ãƒ³ã«å½±éŸ¿ãŒã‚ã‚‹ãŸã‚)
 			loaderSceneCamera.enabled = false;
 
-			// ƒnƒ“ƒhƒ‹‚Ì‰ğ•ú
+			// ãƒãƒ³ãƒ‰ãƒ«ã®è§£æ”¾
 			Addressables.Release(downloadSizeHandle);
 			Addressables.Release(downloadDependenciesHandle);
 		} else if (obj.Status == AsyncOperationStatus.Failed) {
-			Debug.Log("¸”s");
+			Debug.Log("å¤±æ•—");
 		}
 
 	}
 
 	/// <summary>
-	/// ƒV[ƒ“‚ÌƒAƒ“ƒ[ƒh
+	/// ã‚·ãƒ¼ãƒ³ã®ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
 	/// </summary>
 	/// <param name="obj"></param>
 	private void OnSceneUnloaded(AsyncOperationHandle<SceneInstance> obj) {
 
-		// ƒV[ƒ“‚ÌƒAƒ“ƒ[ƒh‚É¬Œ÷‚µ‚Ä‚¢‚½‚ç(ƒnƒ“ƒhƒ‹‚ÌƒXƒe[ƒ^ƒX‚ª¬Œ÷‚Å‚ ‚éê‡)
+		// ã‚·ãƒ¼ãƒ³ã®ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ã¦ã„ãŸã‚‰(ãƒãƒ³ãƒ‰ãƒ«ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒæˆåŠŸã§ã‚ã‚‹å ´åˆ)
 		if (obj.Status == AsyncOperationStatus.Succeeded) {
 			unload = false;
 
-			// ‹ó‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‘ã“ü
+			// ç©ºã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä»£å…¥
 			previousScene = new SceneInstance();
 
-			// Ÿ‚ÌƒV[ƒ“‚ğ“Ç‚İ‚ñ‚Å‚¢‚éi’»‚ğŒ©‚¦‚é‚æ‚¤‚É‚·‚é‚½‚ßƒJƒƒ‰‚ğ—LŒø‰»
+			// æ¬¡ã®ã‚·ãƒ¼ãƒ³ã‚’èª­ã¿è¾¼ã‚“ã§ã„ã‚‹é€²æ—ã‚’è¦‹ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã‚«ãƒ¡ãƒ©ã‚’æœ‰åŠ¹åŒ–
 			loaderSceneCamera.enabled = true;
 		}
 	}
