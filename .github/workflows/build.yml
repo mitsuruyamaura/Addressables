@@ -32,8 +32,8 @@ jobs:
       - name: Set outputs
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-        
-      # Cache
+
+      # Cache の設定
       - uses: actions/cache@v3
         with:
           path: Library
@@ -41,6 +41,10 @@ jobs:
           restore-keys: |
             Library-
 
+      # Library フォルダを作成する
+      - name: Create Library Folder
+        run: mkdir -p Library
+  
       # Unityプロジェクトのビルド
       # 設定しない場合、buildフォルダに出力される
       - name: Run the Android build
