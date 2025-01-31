@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,12 +12,12 @@ public enum SceneName {
 
 public class ButtonScript : MonoBehaviour
 {
-	// Loader ƒV[ƒ“‚Ì SceneLoader ƒXƒNƒŠƒvƒg
+	// Loader ã‚·ãƒ¼ãƒ³ã® SceneLoader ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 	private SceneLoader loader;
-	// ƒ{ƒ^ƒ“‚P
+	// ãƒœã‚¿ãƒ³ï¼‘
 
 	private Button button1;
-	// ƒ{ƒ^ƒ“‚Q
+	// ãƒœã‚¿ãƒ³ï¼’
 
 	private Button button2;
 	[SerializeField]
@@ -29,7 +29,7 @@ public class ButtonScript : MonoBehaviour
 		button1 = transform.Find("Button1").GetComponent<Button>();
 		button2 = transform.Find("Button2").GetComponent<Button>();
 
-		//@İ’è‚µ‚½sceneName‚É‰‚¶‚Äƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚ç“Ç‚İ‚ŞƒV[ƒ“‚ğ•ÏX‚·‚é
+		//ã€€è¨­å®šã—ãŸsceneNameã«å¿œã˜ã¦ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‚‰èª­ã¿è¾¼ã‚€ã‚·ãƒ¼ãƒ³ã‚’å¤‰æ›´ã™ã‚‹
 		if (sceneName == SceneName.Title) {
 			button1.onClick.AddListener(() => loader.PrepareLoadSceneAsync(SceneName.Stage1.ToString()));
 			button2.onClick.AddListener(() => loader.PrepareLoadSceneAsync(SceneName.Stage2.ToString()));

@@ -17,30 +17,56 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 03ad0e66d90c50d4ab98b3dfcb6291dc
   m_SerializeEntries:
-  - m_GUID: f4ab4bc490539aa4090f07f031ba0c6a
-    m_Address: Assets/Prefabs/Cube.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 1f4cb4f3f9bc3b242ae23aade20ee3f1
-    m_Address: Assets/Prefabs/Sphere.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: b7c24698215f581459e3bb7431dfa068
-    m_Address: Assets/Scripts/SoundDataSO.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 0553b7a0dcad2b14f8de98433f612ff9
     m_Address: Assets/Scenes/Title.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 5e39441c2de8b624d9d507825abc3f19
-    m_Address: Assets/Scenes/Stage1.unity
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f4cb4f3f9bc3b242ae23aade20ee3f1
+    m_Address: Assets/Prefabs/Sphere.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a1a46cecf47e324f9b86a4025380458
+    m_Address: Assets/Prefabs/Stage_2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4a7bb53136b24ea4198c28627b0ab113
     m_Address: Assets/Scenes/Stage2.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e39441c2de8b624d9d507825abc3f19
+    m_Address: Assets/Scenes/Stage1.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93ccaec5cbe41c64d93d20fe040efff6
+    m_Address: Assets/Prefabs/Stage_3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b7c24698215f581459e3bb7431dfa068
+    m_Address: Assets/Scripts/SoundDataSO.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ecf42a1534a8e554cb498f9b48b09df4
+    m_Address: Assets/Prefabs/Stage_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4ab4bc490539aa4090f07f031ba0c6a
+    m_Address: Assets/Prefabs/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcaccab780359ac419568fa742a304e2
+    m_Address: Assets/Scripts/StageDataSO.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 552149853094ee64ead752255d2bfdf4, type: 2}
   m_SchemaSet:

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -15,7 +15,7 @@ public class InstaitiateAsyncAddressablesPrefab : MonoBehaviour
     
     void Start()
     {
-        // InstatiateAsync ‚Ìê‡AƒCƒ“ƒXƒ^ƒ“ƒX‰»‚³‚ê‚é‚ÆQÆƒJƒEƒ“ƒg‚ª‘‚¦‚é‚Ì‚ÅAŒÂX‚ÌƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚É Addressables.Release ‚ğ‘‚¢‚½ƒXƒNƒŠƒvƒg‚ğƒAƒ^ƒbƒ`‚µ‚Ä‰ğ•ú‚³‚¹‚é
+        // InstatiateAsync ã®å ´åˆã€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã•ã‚Œã‚‹ã¨å‚ç…§ã‚«ã‚¦ãƒ³ãƒˆãŒå¢—ãˆã‚‹ã®ã§ã€å€‹ã€…ã®ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã« Addressables.Release ã‚’æ›¸ã„ãŸã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ã‚¢ã‚¿ãƒƒãƒã—ã¦è§£æ”¾ã•ã›ã‚‹
         Addressables.InstantiateAsync(cubePrefab, new(0, 0, 0), Quaternion.identity).Completed += Loaded;
         Addressables.InstantiateAsync(cubePrefab, new(1, 0, 0), Quaternion.identity).Completed += Loaded;
 
@@ -23,7 +23,7 @@ public class InstaitiateAsyncAddressablesPrefab : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ[ƒhŒã‚Ìˆ—
+    /// ãƒ­ãƒ¼ãƒ‰å¾Œã®å‡¦ç†
     /// </summary>
     /// <param name="obj"></param>
     public void Loaded(AsyncOperationHandle<GameObject> obj) {
@@ -33,7 +33,7 @@ public class InstaitiateAsyncAddressablesPrefab : MonoBehaviour
     }
 
     /// <summary>
-    /// íœ
+    /// å‰Šé™¤
     /// </summary>
     public void Delete() {
         foreach (var item in cubeInstanceList) {

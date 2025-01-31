@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -6,21 +6,21 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Cysharp.Threading.Tasks;
 
-// ‚©‚ß‚­‚ß‚³‚ñ
+// ã‹ã‚ãã‚ã•ã‚“
 // https://gametukurikata.com/basic/addressables
 
 public class InstantiateAddressablesPrefab : MonoBehaviour
 {
     [SerializeField]
-    private AssetReference cubePrefab;   // Addressables ‚©‚çƒ[ƒh‚·‚é•û–@‚É‚æ‚èAŒ^‚ğ•Ï‚¦‚é
+    private AssetReference cubePrefab;   // Addressables ã‹ã‚‰ãƒ­ãƒ¼ãƒ‰ã™ã‚‹æ–¹æ³•ã«ã‚ˆã‚Šã€å‹ã‚’å¤‰ãˆã‚‹
 
     [SerializeField]
     private AssetReferenceGameObject spherePrefab;
 
-    private AsyncOperationHandle<GameObject> cubePrefabHandle;      // Addressables ‚ÌƒAƒZƒbƒg‚ğƒ[ƒh‚·‚éÛ‚Ìƒnƒ“ƒhƒ‹
-    private AsyncOperationHandle<GameObject> spherePrerfabHandle;   // g—p‚ªI‚í‚Á‚½‚ç‰ğ•ú‚·‚é
+    private AsyncOperationHandle<GameObject> cubePrefabHandle;      // Addressables ã®ã‚¢ã‚»ãƒƒãƒˆã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹éš›ã®ãƒãƒ³ãƒ‰ãƒ«
+    private AsyncOperationHandle<GameObject> spherePrerfabHandle;   // ä½¿ç”¨ãŒçµ‚ã‚ã£ãŸã‚‰è§£æ”¾ã™ã‚‹
 
-    private GameObject loadCubePrefab;     // Addressables ‚ÌƒAƒZƒbƒg‚ğƒ[ƒh‚µ‚½Œ‹‰Ê‚ÌƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğ“ü‚ê‚Ä‚¨‚­B‚±‚ê‚ğg‚Á‚ÄƒCƒ“ƒXƒ^ƒ“ƒX‰»‚·‚é
+    private GameObject loadCubePrefab;     // Addressables ã®ã‚¢ã‚»ãƒƒãƒˆã‚’ãƒ­ãƒ¼ãƒ‰ã—ãŸçµæœã®ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å…¥ã‚Œã¦ãŠãã€‚ã“ã‚Œã‚’ä½¿ã£ã¦ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã™ã‚‹
     private GameObject loadShperePrefab; 
 
     [SerializeField]
@@ -37,15 +37,15 @@ public class InstantiateAddressablesPrefab : MonoBehaviour
         cubePrefabHandle = cubePrefab.InstantiateAsync(Vector3.one, Quaternion.identity);
         await cubePrefabHandle.Task;
 
-        Addressables.LoadAssetAsync<GameObject>(cubePrefab)   // cubePrefab ‚ğƒ[ƒh‚µAI—¹ŒãACompleted ‚Ì’†‚ğˆ—‚·‚é
+        Addressables.LoadAssetAsync<GameObject>(cubePrefab)   // cubePrefab ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã€çµ‚äº†å¾Œã€Completed ã®ä¸­ã‚’å‡¦ç†ã™ã‚‹
             .Completed += (obj) => {
-                cubePrefabHandle = obj;        // ƒ[ƒh‚µ‚½ƒnƒ“ƒhƒ‹ obj ‚ğ Handle ‚É•Û‚·‚é
-                loadCubePrefab = obj.Result;@ // ƒ[ƒh‚µ‚½ƒAƒZƒbƒg‚ğ Prefab ‚É•Û‚·‚é
+                cubePrefabHandle = obj;        // ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒãƒ³ãƒ‰ãƒ« obj ã‚’ Handle ã«ä¿æŒã™ã‚‹
+                loadCubePrefab = obj.Result;   // ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚¢ã‚»ãƒƒãƒˆã‚’ Prefab ã«ä¿æŒã™ã‚‹
                 instancedCubeObjList.Add(Instantiate(loadCubePrefab, Vector3.zero, Quaternion.identity));
                 instancedCubeObjList.Add(Instantiate(loadCubePrefab, new (1, 0 ,0), Quaternion.identity));
             };
 
-        spherePrefab.LoadAssetAsync<GameObject>().Completed += Loaded;@// ‚â‚è•û‚ªˆá‚¤‚¾‚¯‚ÅA‚±‚¿‚ç‚Ì•û–@‚àã‚Æ“¯‚¶(ƒƒ\ƒbƒh‰»‚µ‚Ä‚¢‚é‚©A‚Ç‚¤‚©)
+        spherePrefab.LoadAssetAsync<GameObject>().Completed += Loaded;  // ã‚„ã‚Šæ–¹ãŒé•ã†ã ã‘ã§ã€ã“ã¡ã‚‰ã®æ–¹æ³•ã‚‚ä¸Šã¨åŒã˜(ãƒ¡ã‚½ãƒƒãƒ‰åŒ–ã—ã¦ã„ã‚‹ã‹ã€ã©ã†ã‹)
 
         await UniTask.Delay(10, false, PlayerLoopTiming.Update, token);
         Delete();
@@ -56,7 +56,7 @@ public class InstantiateAddressablesPrefab : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒnƒ“ƒhƒ‹‚ÌƒXƒe[ƒ^ƒX‚ğŠm”FŒãAƒCƒ“ƒXƒ^ƒ“ƒX‚·‚é
+    /// ãƒãƒ³ãƒ‰ãƒ«ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ç¢ºèªå¾Œã€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã™ã‚‹
     /// </summary>
     /// <param name="obj"></param>
     public void Loaded(AsyncOperationHandle<GameObject> obj) {
@@ -69,7 +69,7 @@ public class InstantiateAddressablesPrefab : MonoBehaviour
     }
 
     /// <summary>
-    /// íœ‚Æ‰ğ•ú
+    /// å‰Šé™¤ã¨è§£æ”¾
     /// </summary>
     public void Delete() {
         foreach (var item in instancedCubeObjList) {
@@ -82,7 +82,7 @@ public class InstantiateAddressablesPrefab : MonoBehaviour
         instancedCubeObjList.Clear();
         instancedSphereObjList.Clear();
 
-        // Šeƒnƒ“ƒhƒ‹‚Ì‰ğ•ú
+        // å„ãƒãƒ³ãƒ‰ãƒ«ã®è§£æ”¾
         Addressables.ReleaseInstance(cubePrefabHandle);
         Addressables.Release(spherePrerfabHandle);
     }
