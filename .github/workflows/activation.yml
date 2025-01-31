@@ -1,20 +1,15 @@
 # Action名 なんでもいいがわかりやすいほうが良い
-name: Unity Build
+name: Acquire activation file
 
 # このActionsを実行するタイミングの指定
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch: # この指定をすることで、手動実行も可能にする
 
+# Unity のライセンス認証
 jobs:
   activation:
     name: Request manual activation file
-    runs-on: ubuntu-latest # 動作するOSを制作する ubuntu以外にwindowsやmac-osが選べるが課金体系に注意！
+    runs-on: ubuntu-latest # GitHub Actions がクラウドで動作するOSを指定 ubuntu以外にwindowsやmac-osが選べるが課金体系に注意！
     steps:
     - name: Request manual activation file # Licenceを要求する部分
       id: getManualLicenseFile
